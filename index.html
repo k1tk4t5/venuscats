@@ -19,13 +19,13 @@
         <!-- 
             This chunk of the site uses HTML, CSS and JS. If you look in script.js,
             you can see how you can use JS to select elements from the HTML document.
-            If you look in styles.css, you can see how you can use CSS to select elements
-            from the HTML document
+            If you look in styles.css, you can see how you can use CSS to style elements
+            in the HTML document.
             By using the ids of each of the elements, both the JS and CSS files are able to
-            extract and modify the elements without having to do so in index.html, which will
-            make it learn messy.
+            extract and modify the elements without having to do so in index.html. Otherwise,
+            if everything is in one file, the code will look extremely messy!
             Here, we have a greeting initially called "Hello, world". However, using JS, you can
-            change the greeting with the a click of the button to be based on your input in the text field.
+            change the greeting to a custom input by clicking the button.
         -->
         <h1 id="greeting">Hello, world!</h1>
         <div>
@@ -39,10 +39,9 @@
 
         <!-- Texts in HTML -->
         <!-- 
-            There are diffent types of text elements, but the most common ones are headers, p elements
-            and a elements.
-            Headers go from h1 to h6, p elements are simply normal text, and a elements are links that can wrap
-            around other elements (text and images) and link to another site using the href attribute.
+            There are diffent types of text elements, but the most common ones are header, paragraph, and anchor elements.
+            Headers go from h1 to h6, paragraph elements (p) are simply normal text, and anchor elements (a) are links
+            that can wrap around other elements (text and images) and link to another site using the href attribute.
         -->
         <div class="text">
             <h1>Let's take a look at some simple texts. This is an example of a header.</h1>
@@ -56,7 +55,7 @@
             <p>
                 Notice how this entire section has a violet-ish background,
                 and all the text in it is white. This is what happens if you apply a CSS style to a class.
-                But what if you want all h4 elements in this class to have a certain different style.
+                But what if you want all h4 elements in this class to have a certain different style?
             </p>
             <h4>Now you can if you target the h4 within a class. So the style applies here.</h4>
         </div>
@@ -65,7 +64,7 @@
         <!-- Lists in HTML -->
         <!-- 
             There are two types of lists, unordered (ul) and ordered (ol). Unordered lists have list
-            items (li) without any specific order given to them like bullet points, where ordered lists
+            items (li) without any specific order given to them like bullet points, whereas ordered lists
             have their list items ordered/numbered. 
         -->
         <div class="lists">
@@ -106,11 +105,6 @@
         </div>
 
         <!-- Tables in HTML -->
-        <!-- 
-            There are two types of lists, unordered (ul) and ordered (ol). Unordered lists have list
-            items (li) without any specific order given to them like bullet points, where ordered lists
-            have their list items ordered/numbered. 
-        -->
         <h2>Tables</h2>
         <p>
             You can also create tables in HTML. Within a table element (table), there are table row elements (tr).
@@ -167,9 +161,10 @@
 
         <!-- The Box Model -->
         <!-- 
-            As the paragraph says, this is an interactive playground for you to have fun
-            with CSS's box model (although you can mess with everything here, its just a starter-pack).
-            However, I like to introduce a new element, image elements (img), which in its bare-form
+            This is an interactive playground for you to have fun with CSS's box model (although you 
+            can mess with everything here, its just a starter-pack after all). 
+
+            Below you can find a new element, the image element (img), which in its bare-form
             takes in the src, which is the link to the image, and the alt, alternative text if the 
             image fails to load. It is good practice for all img elements to have an alt.
         -->
@@ -178,7 +173,7 @@
         <p>
             Many people who start working in CSS struggle with the differences between
             padding, border and margin. Instead of explaining through words (boring!),
-            I made a play space below to mess around with them and see what happens.
+            here is a play space to mess around with them and see what happens.
             Go ahead to styles.css and change some of the values and see what happens.
         </p>
         <div id="the-box">
