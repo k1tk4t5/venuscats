@@ -31,7 +31,7 @@ table, th, td {
     align-items: center;
 }
 
-/* You can target elements by id using preceding the id with # */
+/* You can target elements by id by preceding the id name with # */
 #greeting {
     color: darkblue;
 }
@@ -58,7 +58,7 @@ table, th, td {
 /*
     Feel free to mess around with the padding, border and margin here
     to see how the content is affected. You may notice the content's
-    box change size (padding), the border getting thinner/thicker (border)
+    box change size (padding), the border getting thinner/thicker (border),
     and the distance between the two content boxes change (margin).
 */
 #the-box {
