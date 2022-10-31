@@ -2,11 +2,11 @@
 This repository contains starter code for a basic HTML/CSS/Javascript website.
 
 ## Intro
-The frontend of a website boils down to 3 components: the structure of the site (HTML), how the site looks (CSS), and how the site functions (Javascript/JS). In this demo, we'll be pure HTML/CSS/Javascript. It is a compilation of HTML, CSS, JS starting ideas and concepts that you can use for your ZotHacks project or whatever project you want.
+The frontend of a website boils down to 3 components: the structure of the site (HTML), how the site looks (CSS), and how the site functions (Javascript/JS). In this demo, we'll be using pure HTML/CSS/Javascript. It is a compilation of HTML, CSS, JS starting ideas and concepts that you can use for your ZotHacks project or whatever project you want.
 
 ## Installation
 - No installation is needed! Just drag the HTML file into your browser.
-- If you use VSCode, there is a great [extension](https://ritwickdey.github.io/vscode-live-server/) that makes developing frontend apps much easier. Any change you make will be directly reflected in the website instead of you having to drag the HTML file into your browser agian.
+- If you use VSCode, there is a great [extension](https://ritwickdey.github.io/vscode-live-server/) that makes developing frontend apps much easier. Any change you make will be directly reflected in the website instead of you having to drag the HTML file into your browser again.
 
 ## Resources
 If you've never built a website before, here are a few resources to get you started.
