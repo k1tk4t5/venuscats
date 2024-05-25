@@ -1,6 +1,7 @@
 /* You can target elements by id by preceding the id name with # */
 #greeting {
     color: #0069D9;
+    text-align: center;
 }
 
 .center {
@@ -9,3 +10,11 @@
     margin-right: auto;
     width: 50%;
   }
+
+.container {
+    width: 20%; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    margin: 0 auto; /* Center the card horizontally */
+    padding: 10px; /* Add some padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
