@@ -11,6 +11,12 @@
         as well as change the way the website looks!
     -->
         <link rel="stylesheet" href="styles.css">
+        <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"
+/>
     <title>My App</title>
 </head>
 <body>
@@ -28,7 +34,42 @@
             change the greeting to a custom input by clicking the button.
         -->
         <h1 id="greeting">Hello, world!</h1>
-        <img id = "testing"></img>
+        <img id = "cat" class = "center"></img>
+        <div
+        class="d-flex container justify-content-center align-items-center"
+        style="min-height: 40vh">
+        <div class="card text-center rounded">
+            <div class="card-body align-middle">
+                <h2 class="card-title">CATS</h2>
+                <!-- Set the method to POST to avoid showing the username/password in the URL
+                    The default action is disabled to allow your own implementation. -->
+                <form id="cat_form" method="post" action="#">
+                    <div class="form-group">
+                        <label class="card-text">Username</label>
+                        <input
+                                class="form-control"
+                                name="username"
+                                placeholder="Enter Username"
+                                type="text"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="card-text">Password</label>
+                        <input
+                                class="form-control"
+                                name="password"
+                                placeholder="Enter Password"
+                                type="password"
+                        />
+                    </div>
+
+                    <input class="btn btn-primary mt-2" type="submit" value="Submit" />
+                </form>
+
+                <div id="cat_error_message"></div>
+            </div>
+        </div>
+    </div>
         <div>
             <div>
                 <label for="exampleFormControlInput1" class="form-label">What is your name?</label>
@@ -192,6 +233,9 @@
     </div>
     
     <!-- Load scripts at the end of your HTML to make pages load faster! -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
