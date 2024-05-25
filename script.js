@@ -1,4 +1,3 @@
-// Get the value of the name input from the form and update the greeting
 let cat_form = $("#cat_form");
 
 function submitCatForm(formSubmitEvent) {
@@ -22,13 +21,17 @@ function submitCatForm(formSubmitEvent) {
         // Getting cat form data
         const cat_form_data = new FormData(document.getElementById('cat_form'));
         const cat_text = cat_form_data.get('cat_text');
+        const cat_text_color = cat_form_data.get('cat_text_color');
 
         var cat_url_adds = "";
-        if (cat_text != null)  {
-            cat_url_adds += "/says/" + cat_text;
+        if (cat_text != "")  {
+            cat_url_adds += "/says/" + cat_text + "?";
+            cat_url_adds += "fontColor=" + cat_text_color;
         }
 
-        catImage.src = "https://cataas.com/cat/" + data['_id'] + cat_url_adds;
+        const catUrl = "https://cataas.com/cat/" + data['_id'] + cat_url_adds
+        console.log(catUrl);
+        catImage.src = catUrl;
     })
     .catch(error => {
         catFormError.textContent = 'Error:' + error;
