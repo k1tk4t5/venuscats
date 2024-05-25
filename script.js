@@ -25,12 +25,19 @@ fontSize.addEventListener('input', function() {
     document.getElementById("cat_text_size_example").style.fontSize = size;
 })
 
+// Cat download button
+let cat_download = document.getElementById("cat_download");
+cat_download.addEventListener("click", function() {
+    window.open(cat_download.getAttribute("download"));
+})
+
 function submitCatForm(formSubmitEvent) {
     const catImage = document.getElementById('cat_image');
     const catFormError = document.getElementById('cat_error_message');
 
     console.log("submit cat form");
     catImage.src = "cat-loading.gif";
+    cat_download.setAttribute("hidden", "hidden");
 
     formSubmitEvent.preventDefault();
 
@@ -72,7 +79,7 @@ function submitCatForm(formSubmitEvent) {
                 cat_url_adds += "fontColor=white";
             }
 
-            cat_url_adds += "&fontSize=" + cat_text_size.value + "&";
+            cat_url_adds += "&fontSize=" + cat_text_size.value;
         }
 
         
@@ -80,6 +87,9 @@ function submitCatForm(formSubmitEvent) {
         const catUrl = "https://cataas.com/cat/" + data['_id'] + cat_url_adds
         console.log(catUrl);
         catImage.src = catUrl;
+        cat_download.setAttribute("download", catUrl);
+        cat_download.setAttribute("href", catUrl);
+        cat_download.removeAttribute("hidden");
     })
     .catch(error => {
         catFormError.textContent = 'Error:' + error;
