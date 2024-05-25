@@ -34,6 +34,7 @@
             Here, we have a greeting initially called "Hello, world". However, using JS, you can
             change the greeting to a custom input by clicking the button.
         -->
+        <br>
         <h1 id="greeting">VenusCats</h1>
         <img id = "cat_image" class = "center"></img>
         <br>
@@ -46,9 +47,8 @@
                     The default action is disabled to allow your own implementation. -->
                 <form id="cat_form" method="post" action="#">
                     <label class="card-text">
-                        Fill in any fields to generate a cat!
-                        You can also leave any of them blank :)
-                        <br></br>
+                        <div>Fill in any fields to generate a cat!</div>
+                        <div>You can also leave any of them blank :)</div>
                     </label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="picgif" id="pic" value="picture" checked>
@@ -92,6 +92,7 @@
                                 placeholder="Enter Color"
                                 type="text"
                         />
+                    <br>
                     <div class="form-group">
                         <label class="card-text" id="cat_text_size_example" style="font-family:Impact">
                             Text Size</label>
