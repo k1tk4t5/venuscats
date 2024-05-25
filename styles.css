@@ -4,6 +4,11 @@
     text-align: center;
 }
 
+.download-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+}
+
 .center {
     display: block;
     margin-left: auto;
@@ -12,8 +17,8 @@
   }
 
 .card {
-    width: 60%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the card horizontally */
-    padding: 20px; /* Add some padding */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 60%; 
+    margin: 0 auto; 
+    padding: 20px; 
+    box-sizing: border-box;
 }
