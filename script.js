@@ -28,8 +28,31 @@ fontSize.addEventListener('input', function() {
 // Cat download button
 let cat_download = document.getElementById("cat_download");
 cat_download.addEventListener("click", function() {
-    window.open(cat_download.getAttribute("download"));
+    downloadImage(cat_download.getAttribute("download"));
 })
+
+const fetchImage = async url => {
+    const response = await fetch(url)
+    const blob = await response.blob()
+    
+    return blob
+  }
+
+const downloadImage = async url => {
+    const imageBlob = await fetchImage(url)
+    const imageBase64 = URL.createObjectURL(imageBlob)
+  
+    console.log({imageBase64})
+    
+    const a = document.createElement('a')
+    a.style.setProperty('display', 'none')
+    document.body.appendChild(a)
+    // a.download = url.replace(/^.*[\\\/]/, '')
+    a.download = "cat";
+    a.href = imageBase64
+    a.click()
+    a.remove()
+  }
 
 function submitCatForm(formSubmitEvent) {
     const catImage = document.getElementById('cat_image');
