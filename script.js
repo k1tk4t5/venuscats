@@ -4,7 +4,11 @@ let cat_form = $("#cat_form");
 var fontSelection = document.getElementById("cat_text_font");
 
 function changeSelectFont(){
+    var cat_text_size_example = document.getElementById("cat_text_size_example");
+
     fontSelection.style.fontFamily = 
+    fontSelection.options[fontSelection.selectedIndex].style.fontFamily;
+    cat_text_size_example.style.fontFamily =
     fontSelection.options[fontSelection.selectedIndex].style.fontFamily;
 }
 
@@ -14,14 +18,19 @@ fontSelection.onchange = changeSelectFont; // And do it on change
 // Cat text size
 var fontSize = document.getElementById("cat_text_size");
 
-fontSize.addEventListener('input change', function() {
-    console.log("AAAAAAAAAAAAAAAAAAAA");
-    var size = fontSize.ariaValueMax;
-    document.getElementById("cat_text_size_example").fontSize = size;
+fontSize.addEventListener('input', function() {
+    var size = fontSize.value + "px";
+
+
+    document.getElementById("cat_text_size_example").style.fontSize = size;
 })
 
 function submitCatForm(formSubmitEvent) {
+    const catImage = document.getElementById('cat_image');
+    const catFormError = document.getElementById('cat_error_message');
+
     console.log("submit cat form");
+    catImage.src = "cat-loading.gif";
 
     formSubmitEvent.preventDefault();
 
@@ -35,8 +44,6 @@ function submitCatForm(formSubmitEvent) {
         apiUrl = "https://cataas.com/cat?json=true";
     }
 
-    const catImage = document.getElementById('cat_image');
-    const catFormError = document.getElementById('cat_error_message');
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -64,7 +71,11 @@ function submitCatForm(formSubmitEvent) {
             else {
                 cat_url_adds += "fontColor=white";
             }
+
+            cat_url_adds += "&fontSize=" + cat_text_size.value + "&";
         }
+
+        
 
         const catUrl = "https://cataas.com/cat/" + data['_id'] + cat_url_adds
         console.log(catUrl);
