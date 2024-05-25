@@ -25,6 +25,15 @@ fontSize.addEventListener('input', function() {
     document.getElementById("cat_text_size_example").style.fontSize = size;
 })
 
+// Cat text color
+var fontColor = document.getElementById("cat_text_color");
+function changeColor() {
+    var color = fontColor.value;
+    document.getElementById("cat_text_size_example").style.color = color;
+}
+fontColor.onchange = changeColor;
+fontColor.oninput = changeColor;
+
 // Cat download button
 let cat_download = document.getElementById("cat_download");
 cat_download.addEventListener("click", function() {
@@ -88,19 +97,15 @@ function submitCatForm(formSubmitEvent) {
         const cat_form_data = new FormData(document.getElementById('cat_form'));
         const cat_text = cat_form_data.get('cat_text');
         const cat_text_font = cat_form_data.get('cat_text_font');
-        const cat_text_color = cat_form_data.get('cat_text_color');
 
         var cat_url_adds = "";
         if (cat_text != "")  {
             cat_url_adds += "/says/" + cat_text + "?";
             cat_url_adds += "font=" + cat_text_font + "&";
 
-            if (cat_text_color != "") {
-                cat_url_adds += "fontColor=" + cat_text_color;
-            }
-            else {
-                cat_url_adds += "fontColor=white";
-            }
+            var currentColor = JSON.stringify(fontColor.value).replace("#", "%23");
+            currentColor = currentColor.substring(1, currentColor.length - 1);
+            cat_url_adds += "fontColor=" + currentColor;
 
             cat_url_adds += "&fontSize=" + cat_text_size.value;
         }
