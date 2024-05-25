@@ -34,21 +34,38 @@
             Here, we have a greeting initially called "Hello, world". However, using JS, you can
             change the greeting to a custom input by clicking the button.
         -->
+        <br>
         <h1 id="greeting">VenusCats</h1>
         <img id = "cat_image" class = "center"></img>
         <div class="image-container">
             <img id = "cat-image-fly" class = "inner-image"></img>
             <img id = "space-image" class="space-background"></img>
         </div>
-        <div
+        <br>
+        <!-- <div
         class="d-flex container justify-content-center align-items-center"
-        style="min-height: 40vh">
+        style="min-height: 75vh"> -->
         <div class="card text-center rounded">
-            <div class="card-body align-middle">
                 <h2 class="card-title">CATS!</h2>
                 <!-- Set the method to POST to avoid showing the username/password in the URL
                     The default action is disabled to allow your own implementation. -->
                 <form id="cat_form" method="post" action="#">
+                    <label class="card-text">
+                        <div>Fill in any fields to generate a cat!</div>
+                        <div>You can also leave any of them blank :)</div>
+                    </label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="picgif" id="pic" value="picture" checked>
+                        <label class="form-check-label" for="picture">
+                          Picture
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="picgif" id="gif" value="gif">
+                        <label class="form-check-label" for="gif">
+                          GIF
+                        </label>
+                      </div>
                     <div class="form-group">
                         <label class="card-text">Text to put on the cat</label>
                         <input
@@ -58,12 +75,17 @@
                                 type="text"
                         />
                     </div>
-                    <div class="form-group">
+                    <div class="dropdown">
+                        <label class="card-text">Select a font</label>
                         <select name="cat_text_font" id="cat_text_font">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                            <option value="Impact" style="font-family:Impact">Impact</option>
+                            <option value="Arial" style = "font-family:Arial">Arial</option>
+                            <option value="Comic Sans MS" style = "font-family:Comic Sans MS">
+                                Comic Sans MS</option>
+                            <option value="Courier New" style = "font-family:Courier New">
+                                Courier New</option>
+                            <option value="Times New Roman" style = "font-family:Times New Roman">
+                                Times New Roman</option>
                           </select>
                     </div>
                     <div class="form-group">
@@ -73,6 +95,15 @@
                                 name="cat_text_color"
                                 placeholder="Enter Color"
                                 type="text"
+                        />
+                    <br>
+                    <div class="form-group">
+                        <label class="card-text" id="cat_text_size_example" style="font-family:Impact">
+                            Text Size</label>
+                        <input
+                                class="form-control"
+                                name="Font Size"
+                                type="range" min="16" max="100" value="16" id="cat_text_size"
                         />
                     </div>
 
