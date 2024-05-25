@@ -1,5 +1,6 @@
 let cat_form = $("#cat_form");
 
+// Cat text font
 var fontSelection = document.getElementById("cat_text_font");
 
 function changeSelectFont(){
@@ -9,6 +10,15 @@ function changeSelectFont(){
 
 changeSelectFont(); // Do when ready
 fontSelection.onchange = changeSelectFont; // And do it on change
+
+// Cat text size
+var fontSize = document.getElementById("cat_text_size");
+
+fontSize.addEventListener('input change', function() {
+    console.log("AAAAAAAAAAAAAAAAAAAA");
+    var size = fontSize.ariaValueMax;
+    document.getElementById("cat_text_size_example").fontSize = size;
+})
 
 function submitCatForm(formSubmitEvent) {
     console.log("submit cat form");
