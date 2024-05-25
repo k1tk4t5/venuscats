@@ -25,7 +25,16 @@ function submitCatForm(formSubmitEvent) {
 
     formSubmitEvent.preventDefault();
 
-    const apiUrl = "https://cataas.com/cat?json=true";
+    console.log(document.querySelector('input[name="picgif"]:checked').value);
+    const format = document.querySelector('input[name="picgif"]:checked').value;
+    var apiUrl = "";
+    if (format == "gif") {
+        apiUrl = "https://cataas.com/cat/gif?json=true";
+    }
+    else {
+        apiUrl = "https://cataas.com/cat?json=true";
+    }
+
     const catImage = document.getElementById('cat_image');
     const catFormError = document.getElementById('cat_error_message');
     fetch(apiUrl)
