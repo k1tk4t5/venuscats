@@ -7,7 +7,7 @@ function submitCatForm(formSubmitEvent) {
     formSubmitEvent.preventDefault();
 
     const apiUrl = "https://cataas.com/cat?json=true";
-    const catImage = document.getElementById('cat-image');
+    const catImage = document.getElementById('cat_image');
     const catFormError = document.getElementById('cat_error_message');
     fetch(apiUrl)
         .then(response => {
@@ -19,10 +19,16 @@ function submitCatForm(formSubmitEvent) {
     .then(data => {
         console.log(data["_id"])
 
-        const catText = document.querySelector('#cat-text');
-        console.log(catText.textContent);
+        // Getting cat form data
+        const cat_form_data = new FormData(document.getElementById('cat_form'));
+        const cat_text = cat_form_data.get('cat_text');
 
-        catImage.src = "https://cataas.com/cat/" + data['_id'];
+        var cat_url_adds = "";
+        if (cat_text != null)  {
+            cat_url_adds += "/says/" + cat_text;
+        }
+
+        catImage.src = "https://cataas.com/cat/" + data['_id'] + cat_url_adds;
     })
     .catch(error => {
         catFormError.textContent = 'Error:' + error;
