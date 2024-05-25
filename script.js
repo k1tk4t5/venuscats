@@ -4,7 +4,11 @@ let cat_form = $("#cat_form");
 var fontSelection = document.getElementById("cat_text_font");
 
 function changeSelectFont(){
+    var cat_text_size_example = document.getElementById("cat_text_size_example");
+
     fontSelection.style.fontFamily = 
+    fontSelection.options[fontSelection.selectedIndex].style.fontFamily;
+    cat_text_size_example.style.fontFamily =
     fontSelection.options[fontSelection.selectedIndex].style.fontFamily;
 }
 
@@ -13,17 +17,12 @@ fontSelection.onchange = changeSelectFont; // And do it on change
 
 // Cat text size
 var fontSize = document.getElementById("cat_text_size");
-// console.log("here is the font size")
-// console.log(fontSize);
 
 fontSize.addEventListener('input', function() {
-    console.log("AAAAAAAAAAAAAAAAAAAA");
     var size = fontSize.value + "px";
-    console.log("size: " + size);
 
 
     document.getElementById("cat_text_size_example").style.fontSize = size;
-    console.log(document.getElementById("cat_text_size_example").style)
 })
 
 function submitCatForm(formSubmitEvent) {
@@ -47,11 +46,9 @@ function submitCatForm(formSubmitEvent) {
         // Getting cat form data
         const cat_form_data = new FormData(document.getElementById('cat_form'));
         const cat_text = cat_form_data.get('cat_text');
-        const cat_text_size = cat_form_data.get('cat_text_size');
         const cat_text_font = cat_form_data.get('cat_text_font');
         const cat_text_color = cat_form_data.get('cat_text_color');
 
-        console.log("cat text size" + cat_text_size);
         var cat_url_adds = "";
         if (cat_text != "")  {
             cat_url_adds += "/says/" + cat_text + "?";
@@ -64,7 +61,7 @@ function submitCatForm(formSubmitEvent) {
                 cat_url_adds += "fontColor=white";
             }
 
-            cat_url_adds += "fontSize=" + cat_text_size + "&";
+            cat_url_adds += "&fontSize=" + cat_text_size.value + "&";
         }
 
         
