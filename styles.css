@@ -1,6 +1,12 @@
 /* You can target elements by id by preceding the id name with # */
 #greeting {
     color: #0069D9;
+    text-align: center;
+}
+
+.download-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
 }
 
 .center {
@@ -9,3 +15,10 @@
     margin-right: auto;
     width: 50%;
   }
+
+.card {
+    width: 60%; 
+    margin: 0 auto; 
+    padding: 20px; 
+    box-sizing: border-box;
+}
