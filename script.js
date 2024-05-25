@@ -26,7 +26,11 @@ fontSize.addEventListener('input', function() {
 })
 
 function submitCatForm(formSubmitEvent) {
+    const catImage = document.getElementById('cat_image');
+    const catFormError = document.getElementById('cat_error_message');
+
     console.log("submit cat form");
+    catImage.src = "cat-loading.gif";
 
     formSubmitEvent.preventDefault();
 
@@ -40,8 +44,6 @@ function submitCatForm(formSubmitEvent) {
         apiUrl = "https://cataas.com/cat?json=true";
     }
 
-    const catImage = document.getElementById('cat_image');
-    const catFormError = document.getElementById('cat_error_message');
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
