@@ -16,9 +16,31 @@
     width: 50%;
   }
 
+  body {
+    background-repeat: repeat;
+    background-position: center;  /* Center the image */
+  }
+
+  .space-container {
+    display: flex;
+    justify-content: center;
+  }
+  .space-background {
+    width: 700px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .inner-image {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
 .card {
-    width: 60%; 
-    margin: 0 auto; 
-    padding: 20px; 
-    box-sizing: border-box;
+    width: 60%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the card horizontally */
+    padding: 20px; /* Add some padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
