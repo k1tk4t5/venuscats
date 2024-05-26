@@ -1,5 +1,6 @@
 let cat_form = $("#cat_form");
-const catImageFly = document.getElementById('cat-image-fly');
+let currentCatImage;
+let currentSpaceImage;
 
 // Cat text font
 var fontSelection = document.getElementById("cat_text_font");
@@ -116,10 +117,11 @@ function submitCatForm(formSubmitEvent) {
         const catUrl = "https://cataas.com/cat/" + data['_id'] + cat_url_adds
         console.log(catUrl);
         catImage.src = catUrl;
-        catImageFly.src = catUrl;
+
         cat_download.setAttribute("download", catUrl);
         cat_download.setAttribute("href", catUrl);
         cat_download.removeAttribute("hidden");
+        currentCatImage = catUrl;
     })
     .catch(error => {
         catFormError.textContent = 'Error:' + error;
@@ -131,14 +133,47 @@ cat_form.submit(submitCatForm);
 
 
 const apiKey = 'G5t8OiZEGbXXzZsD4x1rNvExVoraSG6CQfja9USW'; // Replace with your actual NASA API key
-const spaceImage = document.getElementById('space-image');
-const getRandomImageButton = document.getElementById('launch-button');
+const spaceBackground = document.getElementById("space-image");
+const getSpaceImage = document.getElementById('space-button');
+const launchButton = document.getElementById('launch-button');
+const resetButton = document.getElementById('reset-button');
 
-getRandomImageButton.addEventListener('click', launchCat);
+getSpaceImage.addEventListener('click', getRandomSpaceImage);
+launchButton.addEventListener('click', launchCat);
+resetButton.addEventListener('click', clearCats);
+
+let launchOnLoadSpace = false;
+spaceBackground.onload = function() {
+    if (launchOnLoadSpace) {
+        launchCat();
+        launchOnLoadSpace = false;
+    }
+  };
+
+const catContainer = document.getElementById("cat-container");
 
 function launchCat() {
-    getRandomSpaceImage();
-    animateCat();
+    if (currentCatImage == null) return;
+    if (currentSpaceImage == null) {
+        launchOnLoadSpace = true;
+        getRandomSpaceImage();
+        return;
+    }
+
+    const template = document.getElementById("cat-template");
+    const container = document.getElementById("cat-container");
+    const clone = template.content.cloneNode(true);
+    
+    const newCat = clone.querySelector("img");
+    newCat.src = currentCatImage;
+    
+    catContainer.appendChild(clone);
+
+    startAnimateCat(newCat);
+}
+
+function clearCats() {
+    catContainer.innerHTML = "";
 }
 
 function getRandomSpaceImage() {
@@ -147,7 +182,9 @@ function getRandomSpaceImage() {
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-        spaceImage.src = data.url;
+        spaceBackground.src = data.url;
+        //document.body.style.backgroundImage = `url("${data.url}")`;
+        currentSpaceImage = data.url;
     })
     .catch(error => {
       console.error('Error fetching image:', error);
@@ -164,57 +201,73 @@ function generateRandomDate() {
 }
 
 function getRandomDirection() {
-    const angle = Math.random() * 2 * Math.PI;
-    return {
-      x: Math.cos(angle),
-      y: Math.sin(angle),
-    };
+    directions = [45, 135, -135, -45];
+    randomDir = directions[Math.floor(Math.random() * directions.length)];
+    return randomDir;
   }
 
-const spaceBackground = document.getElementById("space-image");
+let speed = 4;
 
-let speed = 3.5;
-let deltaX = speed * Math.cos(45 * Math.PI/180);
-let deltaY = speed * Math.sin(45 * Math.PI/180);
+function startAnimateCat(catImage) {
+    catImage.style.position = "absolute";  // Set positioning
+    const offsetLeft = spaceBackground.offsetLeft + Math.random() * spaceBackground.offsetWidth;
+    const offsetTop = spaceBackground.offsetTop + Math.random() * spaceBackground.offsetHeight;
 
-let animationId;
+    catImage.style.left = `${offsetLeft}px`;
+    catImage.style.top = `${offsetTop}px`;
+    const degDirection = getRandomDirection();
+    let deltaX = speed * Math.cos(degDirection * Math.PI/180);
+    let deltaY = speed * Math.sin(degDirection * Math.PI/180);
+    animateCat(catImage, deltaX, deltaY);
+}
 
-function animateCat() {
-    window.cancelAnimationFrame(animationId);
+function animateCat(catImage, deltaX, deltaY, fullScreen = false) {
+    let imageWidth = catImage.offsetWidth;
+    let imageHeight = catImage.offsetHeight;
+
+    let backgroundOffsetX;
+    let backgroundOffsetY;
+
+    let backgroundWidth;
+    let backgroundHeight;
     
-    let imageWidth = catImageFly.offsetWidth;
-    let imageHeight = catImageFly.offsetHeight;
+    if (fullScreen == true) {
+        backgroundOffsetX = 0;
+        backgroundOffsetY = 0;
+    
+        backgroundWidth = document.documentElement.scrollWidth;
+        backgroundHeight = document.documentElement.scrollHeight;    
+    } else {
+        backgroundOffsetX = spaceBackground.offsetLeft;
+        backgroundOffsetY = spaceBackground.offsetTop;
 
-    let backgroundOffsetX = spaceBackground.offsetLeft;
-    let backgroundOffsetY = spaceBackground.offsetTop;
-
-    let backgroundWidth = spaceBackground.offsetWidth;
-    let backgroundHeight = spaceBackground.offsetHeight;
-
-    let newLeft = catImageFly.offsetLeft + deltaX;
-    let newTop = catImageFly.offsetTop + deltaY;
+        backgroundWidth = spaceBackground.offsetWidth;
+        backgroundHeight = spaceBackground.offsetHeight;
+    }
+    
+    let newLeft = catImage.offsetLeft + deltaX;
+    let newTop = catImage.offsetTop + deltaY;
 
     // Check for collisions with container edges
     if (newLeft < backgroundOffsetX) {
         deltaX = -deltaX; // Reverse direction if hitting left edge
-        newLeft = 0;
+        newLeft = backgroundOffsetX;
     } else if (newLeft + imageWidth > backgroundOffsetX + backgroundWidth) {
         deltaX = -deltaX; // Reverse direction if hitting right edge
-        newLeft = backgroundWidth - imageWidth;
+        newLeft = backgroundOffsetX + backgroundWidth - imageWidth;
     }
 
     if (newTop < backgroundOffsetY) {
         deltaY = -deltaY; // Reverse direction if hitting top edge
-        newTop = 0;
+        newTop = backgroundOffsetY;
     } else if (newTop + imageHeight > backgroundOffsetY + backgroundHeight) {
         deltaY = -deltaY; // Reverse direction if hitting bottom edge
-        newTop = backgroundHeight - imageHeight;
+        newTop = backgroundOffsetY + backgroundHeight - imageHeight;
     }
 
-    catImageFly.style.left = `${newLeft}px`;
-    catImageFly.style.top = `${newTop}px`;
+    catImage.style.left = `${newLeft}px`;
+    catImage.style.top = `${newTop}px`;
 
-    animationId = window.requestAnimationFrame(animateCat); // Schedule next animation frame
+    const animationFunction = () => animateCat(catImage, deltaX, deltaY, fullScreen)
+    animationId = window.requestAnimationFrame(animationFunction); // Schedule next animation frame
 }
-
-animateCat();

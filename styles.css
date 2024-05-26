@@ -15,26 +15,26 @@
     margin-right: auto;
     width: 50%;
   }
-  
-  .image-container {
-    position: relative;
-    height: 500px;
-    width: auto;
-    height: auto;
+
+  body {
+    background-repeat: repeat;
+    background-position: center;  /* Center the image */
   }
 
+  .space-container {
+    display: flex;
+    justify-content: center;
+  }
   .space-background {
-    width: 100%;
-    height: 100%;
+    width: 700px;
+    height: auto;
     object-fit: contain;
   }
   
   .inner-image {
     position: absolute;
-    min-height: 20%;
-    min-width: 20%;
-    max-height: 25%;
-    max-width: 25%;
+    width: 150px;
+    height: auto;
     object-fit: contain;
   }
 

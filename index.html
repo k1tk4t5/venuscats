@@ -37,8 +37,11 @@
         <br>
         <h1 id="greeting">VenusCats</h1>
         <img id = "cat_image" class = "center"></img>
-        <div class="image-container">
-            <img id = "cat-image-fly" class = "inner-image"></img>
+        <template id = "cat-template">
+            <img class = "inner-image" src=""></img>
+        </template>
+        <div id="cat-container"> </div>
+        <div class = "space-container">
             <img id = "space-image" class="space-background"></img>
         </div>
         <br>
@@ -108,7 +111,9 @@
                     </div>
 
                     <input class="btn btn-primary mt-2" type="submit" value="Generate" />
-                    <button id="launch-button" type="button">Launch</button> 
+                    <button id="launch-button" class="btn btn-primary mt-2" type="button">Launch Cat</button> 
+                    <button id="space-button" class="btn btn-primary mt-2" type="button">New Background</button> 
+                    <button id="reset-button" class="btn btn-primary mt-2" type="button">Clear Cats</button> 
                 </form>
 
                 <div id="cat_error_message"></div>
