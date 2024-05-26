@@ -196,6 +196,7 @@ function getRandomSpaceImage() {
 function removeSpaceImage() {
     spaceBackground.src = "";
     currentSpaceImage = "";
+    clearCats();
 }
 
 function generateRandomDate() {
