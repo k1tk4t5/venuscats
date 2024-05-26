@@ -137,10 +137,12 @@ const spaceBackground = document.getElementById("space-image");
 const getSpaceImage = document.getElementById('space-button');
 const launchButton = document.getElementById('launch-button');
 const resetButton = document.getElementById('reset-button');
+const removeButton = document.getElementById('remove-button');
 
 getSpaceImage.addEventListener('click', getRandomSpaceImage);
 launchButton.addEventListener('click', launchCat);
 resetButton.addEventListener('click', clearCats);
+removeButton.addEventListener('click', removeSpaceImage);
 
 let launchOnLoadSpace = false;
 spaceBackground.onload = function() {
@@ -189,6 +191,11 @@ function getRandomSpaceImage() {
     .catch(error => {
       console.error('Error fetching image:', error);
     });
+}
+
+function removeSpaceImage() {
+    spaceBackground.src = "";
+    currentSpaceImage = "";
 }
 
 function generateRandomDate() {
