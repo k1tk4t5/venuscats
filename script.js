@@ -50,8 +50,6 @@ const fetchImage = async url => {
 const downloadImage = async url => {
     const imageBlob = await fetchImage(url)
     const imageBase64 = URL.createObjectURL(imageBlob)
-  
-    console.log({imageBase64})
     
     const a = document.createElement('a')
     a.style.setProperty('display', 'none')
@@ -67,13 +65,12 @@ function submitCatForm(formSubmitEvent) {
     const catImage = document.getElementById('cat_image');
     const catFormError = document.getElementById('cat_error_message');
 
-    console.log("submit cat form");
+    // console.log("submit cat form");
     catImage.src = "cat-loading.gif";
     cat_download.setAttribute("hidden", "hidden");
 
     formSubmitEvent.preventDefault();
 
-    console.log(document.querySelector('input[name="picgif"]:checked').value);
     const format = document.querySelector('input[name="picgif"]:checked').value;
     var apiUrl = "";
     if (format == "gif") {
@@ -91,7 +88,7 @@ function submitCatForm(formSubmitEvent) {
         return response.json();
     })
     .then(data => {
-        console.log(data["_id"])
+        // console.log(data["_id"])
 
         // Getting cat form data
         const cat_form_data = new FormData(document.getElementById('cat_form'));
@@ -113,7 +110,7 @@ function submitCatForm(formSubmitEvent) {
         
 
         const catUrl = "https://cataas.com/cat/" + data['_id'] + cat_url_adds
-        console.log(catUrl);
+        // console.log(catUrl);
         catImage.src = catUrl;
         cat_download.setAttribute("download", catUrl);
         cat_download.setAttribute("href", catUrl);
