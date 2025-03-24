@@ -114,7 +114,7 @@ function submitCatForm(formSubmitEvent) {
 
         
 
-        const catUrl = "https://cataas.com/cat/" + data['_id'] + cat_url_adds
+        const catUrl = "https://cataas.com/cat/" + data['id'] + cat_url_adds
         // console.log(catUrl);
         catImage.src = catUrl;
 
